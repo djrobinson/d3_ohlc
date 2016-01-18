@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+
+  .chart rect {
+    fill: steelblue;
+  }
+
+  .chart text {
+    fill: white;
+    font: 10px sans-serif;
+    text-anchor: end;
+  }
+
+  </style>
+
+  <svg class="chart"></svg>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.12/d3.min.js"></script>
+  <script src="ohlcChart.js"></script>
+ 
+  <title>D3 Bar Charts</title>
+</head>
+<body>
+</body>
+</html>
