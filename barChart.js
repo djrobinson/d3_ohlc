@@ -1,4 +1,17 @@
-var data = [4, 8, 14, 24, 32, 26, 22, 18, 25, 12, 16];
+
+var xhr = new XMLHttpRequest();
+      xhr.open("GET", "http://localhost:8080/mktprofile", false);
+      xhr.send();
+
+      var retdata = JSON.parse(xhr.responseText);
+
+      var data = retdata.map(function(obj){
+        return obj.volume;
+      })
+
+
+
+// var data = [4, 8, 14, 24, 32, 26, 22, 18, 25, 12, 16];
 
 var width = 420,
     barHeight = 20;
@@ -8,7 +21,7 @@ var x = d3.scale.linear()
     .range([0, width]);
 
 var chart = d3.select(".chart")
-    .attr("width", width)
+    .attr("width", width + 20)
     .attr("height", barHeight * data.length);
 
 var bar = chart.selectAll("g")

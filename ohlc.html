@@ -29,13 +29,9 @@
       var start = Date("16/01/70 06:00");
       var data = [];
 
-//start_dt = datetime.strptime("16/01/70 06:00", "%d/%m/%y %H:%M")
-//end_dt = datetime.strptime("16/01/70 20:00", "%d/%m/%y %H:%M")
-
-
       function min(a, b){ return a < b ? a : b ; }
-                   
-      function max(a, b){ return a > b ? a : b; }   
+
+      function max(a, b){ return a > b ? a : b; }
 
       var xhr = new XMLHttpRequest();
       xhr.open("GET", "http://localhost:8080/ticks", false);
@@ -47,10 +43,10 @@
 
 
 
-    function buildChart(data){        
+    function buildChart(data){
       console.log(data);
-      var margin = 50;       
-      
+      var margin = 50;
+
     var chart = d3.select("#chart")
       .append("svg:svg")
       .attr("class", "chart")
@@ -93,7 +89,7 @@
            .attr("dy", 20)
            .attr("text-anchor", "middle")
            .text(function(d){ var date = new Date(d.date);  return date.getDate(); });
- 
+
          chart.selectAll("text.yrule")
           .data(y.ticks(10))
           .enter().append("svg:text")
@@ -101,7 +97,7 @@
           .attr("x", width - margin)
           .attr("y", y)
           .attr("dy", 0)
-          .attr("dx", 20)    
+          .attr("dx", 20)
           .attr("text-anchor", "middle")
           .text(String);
 
@@ -109,7 +105,7 @@
     .data(data)
     .enter().append("svg:rect")
     .attr("x", function(d) { return x(d.date.$date);})
-          .attr("y", function(d) {return y(max(d.open, d.close));})     
+          .attr("y", function(d) {return y(max(d.open, d.close));})
     .attr("height", function(d) { return y(min(d.open, d.close))-y(max(d.open, d.close));})
     .attr("width", function(d) { return 0.5 * (width - 2*margin)/data.length; })
           .attr("fill",function(d) { return d.open > d.close ? "red" : "green" ;});
@@ -119,15 +115,15 @@
           .enter().append("svg:line")
           .attr("class", "stem")
           .attr("x1", function(d) { return x(d.date.$date) + 0.25 * (width - 2 * margin)/ data.length;})
-          .attr("x2", function(d) { return x(d.date.$date) + 0.25 * (width - 2 * margin)/ data.length;})  
+          .attr("x2", function(d) { return x(d.date.$date) + 0.25 * (width - 2 * margin)/ data.length;})
 
           // .attr("x1", function(d) { return x(dateFormat.parse(.dated.Date).getTime()) + 0.25 * (width - 2 * margin)/ data.length;})
-          // .attr("x2", function(d) { return x(dateFormat.parse(d.Date).getTime()) + 0.25 * (width - 2 * margin)/ data.length;})      
+          // .attr("x2", function(d) { return x(dateFormat.parse(d.Date).getTime()) + 0.25 * (width - 2 * margin)/ data.length;})
           .attr("y1", function(d) { return y(d.high);})
           .attr("y2", function(d) { return y(d.low); })
           .attr("stroke", function(d){ return d.open > d.close ? "red" : "green"; })
 
-      }     
+      }
 
   //     function appendToData(x){
   // if(data.length > 0){
@@ -136,10 +132,10 @@
   //       data = x.query.results.quote;
   //       for(var i=0;i<data.length;i++){
   //         data[i].timestamp = (new Date(data[i].date).getTime() / 1000);
-  //       }     
+  //       }
   //       data = data.sort(function(x, y){ return dateFormat.parse(x.Date).getTime() - dateFormat.parse(y.Date).getTime(); });
   //       console.log(data);
-  //       buildChart(data);     
+  //       buildChart(data);
   //     }
 
       // function buildQuery(){
@@ -147,16 +143,16 @@
       //   if(symbol === ""){
       //      symbol = "AMZN";
       //   }
-      //   symbol = symbol.replace("#", "");     
+      //   symbol = symbol.replace("#", "");
       //   var base = "select * from yahoo.finance.historicaldata where symbol = \"{0}\" and startDate = \"{1}\" and endDate = \"{2}\"";
       //   var getDateString = d3.time.format("%Y-%m-%d");
       //   var query = base.format(symbol, getDateString(start), getDateString(end));
-      //   query = encodeURIComponent(query);        
+      //   query = encodeURIComponent(query);
       //   var url = "http://query.yahooapis.com/v1/public/yql?q={0}&format=json&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback=appendToData".format(query);
       //   return url;
       // }
-      // function fetchData(){     
-      //   // url = buildQuery();     
+      // function fetchData(){
+      //   // url = buildQuery();
       //   scriptElement = document.createElement("SCRIPT");
       //   scriptElement.type = "text/javascript";
       //   // i add to the url the call back function
